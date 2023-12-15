@@ -10,4 +10,5 @@ class Game {
     required this.rating,
     required this.description,
   });
+
 }

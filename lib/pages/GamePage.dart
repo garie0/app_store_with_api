@@ -5,7 +5,7 @@ import 'package:app_store/widgets/RecommendWidget.dart';
 import 'package:flutter/material.dart';
 
 class GamePage extends StatelessWidget{
-  final Game game;
+  final Map game;
   final List<Game> recommendedGames;
   final String selectedCategory;
   final List<Game> games; // Tambahkan parameter games
@@ -25,8 +25,9 @@ class GamePage extends StatelessWidget{
         children: [
           Opacity(
             opacity: 0.4,
-            child: Image.asset(
-              "assets/${game.title}.jpg",
+            child: Image.network(
+              game["thumbnail"] ??
+                                  "https://awsimages.detik.net.id/community/media/visual/2023/05/10/ilustrasi-kucing-oren.jpeg?w=1200",
               height: 280,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -81,10 +82,12 @@ class GamePage extends StatelessWidget{
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              "assets/${game.title}.jpg",
+                            child: Image.network(
+                               game["thumbnail"] ??
+                                  "https://awsimages.detik.net.id/community/media/visual/2023/05/10/ilustrasi-kucing-oren.jpeg?w=1200",
                               height: 250,
                               width: 180,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -120,7 +123,7 @@ class GamePage extends StatelessWidget{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          game.title, // Tampilkan judul game
+                          game["title"], // Tampilkan judul game
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
@@ -129,7 +132,7 @@ class GamePage extends StatelessWidget{
                         ),
                         SizedBox(height: 15),
                         Text(
-                          game.description, // Tampilkan deskripsi game
+                          game["short_description"], // Tampilkan deskripsi game
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
